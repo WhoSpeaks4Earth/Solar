@@ -18,7 +18,7 @@ export class DateComponent implements OnInit {
 
   getDate() {
     let m = moment();
-    this.currentDate = m.format("MMMM Do YYYY");
+    this.currentDate = m.format("ll");
     this.currentWeekDay = m.format("dddd");
   }
 
