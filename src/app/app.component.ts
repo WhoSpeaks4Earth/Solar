@@ -1,3 +1,4 @@
+import { SolarService } from './providers/solar.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  public solarSummary: any;
 
+  constructor(private solarService: SolarService) { }
+
+  ngOnInit() {
+      this.solarService.getSolarSummary().subscribe(
+        data => this.solarSummary = data,
+        error => console.log(error)
+      );
+    }
 }

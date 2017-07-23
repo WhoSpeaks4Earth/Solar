@@ -1,5 +1,5 @@
 <div *ngIf="weather">
-  <img [src]="weather.icon_url" width="30px" height="30px" alt="Weather Icon" />
-  {{ weather.temp_f }} &deg; F
-  <p class="text-muted"> {{ weather.weather }}</p>
+  <h6><img [src]="weather.icon_url" width="30px" height="30px" alt="Weather Icon" />
+  {{ weather.temp_f }}&deg; F</h6>
+  <p class="text-muted">{{ weather.weather }}</p>
 </div>

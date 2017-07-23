@@ -8,9 +8,8 @@
         <app-weather></app-weather>
       </div>
       <div class="col">
-        <app-system></app-system>
+        <app-system *ngIf="solarSummary" [summary]="solarSummary"></app-system>
       </div>
     </div>
   </div>
 </header>
-
