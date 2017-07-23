@@ -1,9 +1,10 @@
 <div class="container sub-header">
   <div class="row">
-    <div class="col-xs-12 text-center">
-      <p class="text-muted">
-        Last reported at: {{ lastReportAt }}
-      </p>
+    <div class="col system-status">
+        <i class="fa fa-check-circle" aria-hidden="true"></i> {{ summary.status }}
     </div>
+      <div class="col last-reported text-right">
+        last reported {{ lastReportAt }}
+      </div>
   </div>
 </div>

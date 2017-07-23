@@ -4,9 +4,8 @@
     [solarSummary]="solarSummary"></app-header>
 <app-sub-header
     *ngIf="solarSummary"
-    [lastReportAt]="solarSummary.last_report_at"></app-sub-header>
+    [summary]="solarSummary"></app-sub-header>
 
-<app-system-details></app-system-details>
 <app-production-today></app-production-today>
 
 <div class="container text-center">

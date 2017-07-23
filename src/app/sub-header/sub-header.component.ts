@@ -7,10 +7,11 @@ import * as moment from 'moment';
   styleUrls: ['./sub-header.component.scss']
 })
 export class SubHeaderComponent implements OnInit {
-  @Input() lastReportAt;
+  @Input() summary;
+  private lastReportAt;
 
   ngOnInit() {
-    this.lastReportAt = moment.unix(this.lastReportAt).fromNow();
+    this.lastReportAt = moment.unix(this.summary.last_report_at).fromNow();
   }
 
 }
