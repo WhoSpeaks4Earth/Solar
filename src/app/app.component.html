@@ -6,8 +6,10 @@
     *ngIf="solarSummary"
     [summary]="solarSummary"></app-sub-header>
 
-<app-production-today></app-production-today>
+<app-production-today
+    *ngIf="solarSummary"
+    [summary]="solarSummary"></app-production-today>
 
-<div class="container text-center">
+<div class="container text-center enphase">
 <img src="../assets/enphase.png" alt="Powered By Enphase" width="200px" height="50px">
 </div>

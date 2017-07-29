@@ -18,4 +18,8 @@ export class SystemComponent implements OnInit {
     this.lastReportAt = moment.unix(this.summary.last_report_at).fromNow();
   }
 
+  ngDidChange(summary) {
+    console.log('summary changed');
+  }
+
 }

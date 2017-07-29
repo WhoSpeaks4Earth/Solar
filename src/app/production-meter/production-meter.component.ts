@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 //import { SolarService } from '../providers/solar.service';
 import Chart from 'chart.js';
 
@@ -8,6 +8,8 @@ import Chart from 'chart.js';
   styleUrls: ['./production-meter.component.scss']
 })
 export class ProductionMeterComponent implements OnInit {
+  @Input() summary;
+  private energyToday: number = 0;
   private chart: Chart;
   private readonly maxkWh: number = 22;
   private currentkWh: number = 12;
@@ -16,7 +18,7 @@ export class ProductionMeterComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-
+    this.energyToday = Math.round(this.summary.energy_today / 100) / 10;
     this.calcRatio();
 
     let ctx = document.getElementById("myChart");
