@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import * as moment from 'moment';
 
 @Component({
   selector: 'app-sub-header',
@@ -7,11 +6,10 @@ import * as moment from 'moment';
   styleUrls: ['./sub-header.component.scss']
 })
 export class SubHeaderComponent implements OnInit {
-  @Input() summary;
-  private lastReportAt;
+  @Input() summary: any;
+  constructor() { }
 
   ngOnInit() {
-    this.lastReportAt = moment.unix(this.summary.last_report_at).fromNow();
   }
 
 }

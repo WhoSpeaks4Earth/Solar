@@ -10,9 +10,9 @@ import { SystemComponent } from './system/system.component';
 import { SystemDetailsComponent } from './system-details/system-details.component';
 import { ProductionTodayComponent } from './production-today/production-today.component';
 import { ProductionMeterComponent } from './production-meter/production-meter.component';
+import { SubHeaderComponent } from './sub-header/sub-header.component';
 
 import { SolarService } from './providers/solar.service';
-import { SubHeaderComponent } from './sub-header/sub-header.component';
 
 @NgModule({
   declarations: [
