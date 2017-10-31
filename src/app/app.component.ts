@@ -8,12 +8,18 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   public solarSummary: any;
+  public solarStats: any;
 
   constructor(private solarService: SolarService) { }
 
   ngOnInit() {
       this.solarService.getSolarSummary().subscribe(
         data => this.solarSummary = data,
+        error => console.log(error)
+      );
+
+      this.solarService.getSolarStats().subscribe(
+        data => this.solarStats = data,
         error => console.log(error)
       );
     }

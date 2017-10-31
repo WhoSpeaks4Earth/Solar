@@ -24,6 +24,9 @@ export class ProductionMeterComponent implements OnInit {
     let ctx = document.getElementById("myChart");
     this.chart = new Chart(ctx, {
     type: 'doughnut',
+    options: {
+      cutoutPercentage: 40
+    },
     data: {
       //labels: ["Produced", "Potential"],
       datasets: [{
@@ -33,12 +36,12 @@ export class ProductionMeterComponent implements OnInit {
             this.remainingkWh
           ],
           backgroundColor: [
-              'rgba(54, 162, 235, 0.2)',
-              'rgba(255, 159, 64, 0.2)'
+              'rgba(54, 162, 235, 0.8)',
+              'rgba(220, 220, 220, 0.2)'
           ],
           borderColor: [
-            'rgba(54, 162, 235, 1)',  
-            'rgba(255, 159, 64, 1)'
+            'rgba(54, 162, 235, 0.8)',
+            'rgba(54, 162, 235, 0.2)',
           ],
           borderWidth: 1
         }]
