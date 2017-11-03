@@ -16,11 +16,11 @@ export class SolarService {
     return this.http
       .get(this.solarSummaryUrl)
       .map((res: Response) => res.json())
-      .do(obj => {
-        if(obj.status == 'comm' || obj.status == 'normal')
-          obj.status = 'Online';
+      .do(summary => {
+        if(summary.status == 'comm' || summary.status == 'normal')
+          summary.status = 'Online';
         else
-          obj.status = 'Offline';
+          summary.status = 'Offline';
       });
   }
 

@@ -1,3 +1,4 @@
+import { SolarService } from '../../providers/solar.service';
 import { Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
 
@@ -7,19 +8,26 @@ import * as moment from 'moment';
   styleUrls: ['./system.component.scss']
 })
 export class SystemComponent implements OnInit {
-  @Input() summary;
   private currentPower;
   private lastReportAt;
 
-  constructor() { }
+  private summary;
+
+  constructor(private solarService: SolarService) { }
 
   ngOnInit() {
-    this.currentPower = Math.round(this.summary.current_power / 10) / 100;
-    this.lastReportAt = moment.unix(this.summary.last_report_at).fromNow();
+    this.solarService.getSolarSummary().subscribe(
+      summary => {
+        this.summary = summary;
+        this.setValues();
+      },
+      error => console.log(error)
+    )
   }
 
-  ngDidChange(summary) {
-    console.log('summary changed');
+  setValues() {
+    this.currentPower = Math.round(this.summary.current_power / 10) / 100;
+    this.lastReportAt = moment.unix(this.summary.last_report_at).fromNow();
   }
 
 }

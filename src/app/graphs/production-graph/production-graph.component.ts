@@ -1,5 +1,5 @@
-import { ChangeDetectionStrategy } from '@angular/core/src/change_detection/constants';
-import { Component, Input, OnInit } from '@angular/core';
+import { SolarService } from '../../providers/solar.service';
+import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
 
 @Component({
@@ -8,12 +8,22 @@ import Chart from 'chart.js';
   styleUrls: ['./production-graph.component.scss']
 })
 export class ProductionGraphComponent implements OnInit {
-  @Input() stats;
+  private stats;
   private chart: Chart;
   
-  constructor() { }
+  constructor(private solarService: SolarService) { }
 
   ngOnInit() {
+    this.solarService.getSolarStats().subscribe(
+      stats => {
+        this.stats = stats;
+        this.setProductionGraph();
+      },
+      error => console.log(error)
+    );
+  }
+
+  setProductionGraph() {
     let ctx = document.getElementById("productionTodayGraph");
     this.chart = new Chart(ctx, {
     type: 'bar',

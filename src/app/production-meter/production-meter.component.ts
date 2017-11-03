@@ -1,5 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
-//import { SolarService } from '../providers/solar.service';
+import { SolarService } from '../providers/solar.service';
+import { Component, OnInit } from '@angular/core';
 import Chart from 'chart.js';
 
 @Component({
@@ -8,20 +8,32 @@ import Chart from 'chart.js';
   styleUrls: ['./production-meter.component.scss']
 })
 export class ProductionMeterComponent implements OnInit {
-  @Input() summary;
   private energyToday: number = 0;
   private chart: Chart;
   private readonly maxkWh: number = 22;
-  private currentkWh: number = 12;
   private remainingkWh: number = 0;
+  private summary;
 
-  constructor() { }
+  constructor(private solarService: SolarService) { }
 
   ngOnInit() {
-    this.energyToday = Math.round(this.summary.energy_today / 100) / 10;
-    this.calcRatio();
+    this.solarService.getSolarSummary().subscribe(
+      summary => {
+        this.summary = summary;
+        this.setValues();
+        this.setChart();
+      },
+      error => console.log(error)
+    );
+  }
 
-    let ctx = document.getElementById("myChart");
+  setValues() {
+    this.energyToday = Math.round(this.summary.energy_today / 100) / 10;
+    this.remainingkWh = this.maxkWh - this.energyToday;
+  }
+
+  setChart() {
+    const ctx = document.getElementById("myChart");
     this.chart = new Chart(ctx, {
     type: 'doughnut',
     options: {
@@ -32,7 +44,7 @@ export class ProductionMeterComponent implements OnInit {
       datasets: [{
         label: 'Produced vs Potential',
           data: [
-            this.currentkWh,
+            this.energyToday,
             this.remainingkWh
           ],
           backgroundColor: [
@@ -47,10 +59,6 @@ export class ProductionMeterComponent implements OnInit {
         }]
       }
     });
-  }
-
-  calcRatio() {
-    this.remainingkWh = this.maxkWh - this.currentkWh;
   }
 
 }

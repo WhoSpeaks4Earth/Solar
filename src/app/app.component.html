@@ -1,18 +1,10 @@
 
-<app-header
-    *ngIf="solarSummary"
-    [solarSummary]="solarSummary"></app-header>
-<app-sub-header
-    *ngIf="solarSummary"
-    [summary]="solarSummary"></app-sub-header>
+<app-header></app-header>
+<app-sub-header></app-sub-header>
 
-<app-production-today
-    *ngIf="solarSummary"
-    [summary]="solarSummary"></app-production-today>
+<app-production-today></app-production-today>
 
-<app-production-graph
-    *ngIf="solarStats"
-    [stats]="solarStats"></app-production-graph>
+<app-production-graph></app-production-graph>
 
 <div class="container text-center enphase">
 <img src="../assets/enphase.png" alt="Powered By Enphase" width="200px" height="50px">

@@ -6,12 +6,10 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./production-today.component.scss']
 })
 export class ProductionTodayComponent implements OnInit {
-  @Input() summary;
 
   constructor() { }
 
   ngOnInit() {
-    console.log('yerrrp' + this.summary)
   }
 
 }
